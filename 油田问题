@@ -1,0 +1,38 @@
+#include<stdio.h>
+int count;
+char a[102][102];
+void dfs(int i,int j)
+{
+	a[i][j]='*';
+	for(int e=i-1;e<=i+1;e++){
+		for(int f=j-1;f<=j+1;f++){
+			if(a[e][f]=='@'){
+				dfs(e,f);
+			}
+		}
+	}
+ } 
+int main()
+{
+	int m,n,count;
+	
+	while(scanf("%d %d",&m,&n)&&m!=0)
+	{
+		count=0;
+		for(int i=1;i<=m;i++){
+			getchar();
+			for(int j=1;j<=n;j++)
+				scanf("%c",&a[i][j]);
+		}
+		for(int i=1;i<=m;i++){
+			for(int j=1;j<=n;j++){
+	if(a[i][j]=='@'){
+			dfs(i,j);
+	count++;}
+		}
+		
+	}
+	
+	printf("%d\n",count);
+	}
+	}
