@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+int n,k;
+int visit[100010];
+struct step{
+	int x;//位置 
+	int steps;//到达x所需的步数。 
+}q[100010];
+int count=0;
+int flag=0;
+void bfs(int m)
+{
+	visit[m]=1;
+	count++;
+	q[count].x=m;
+	q[count].steps=q[flag].steps+1;
+}
+int main()
+{
+	scanf("%d %d",&n,&k);
+	q[count].steps=0;
+	q[count].x=n;
+	visit[n]=1;
+	while(1){
+		if(q[flag].x==k){
+			printf("%d",q[flag].steps);
+			return 0;
+		}
+		if(q[flag].x-1>=0&&!visit[q[flag].x-1]){
+			bfs(q[flag].x-1);
+		}
+			if(q[flag].x+1<=100000&&!visit[q[flag].x+1]){
+			bfs(q[flag].x+1);
+		}
+		if((q[flag].x)*2<=100000&&!visit[(q[flag].x)*2]){
+			bfs(q[flag].x*2);
+		}
+		flag++;
+	}
+ } 
